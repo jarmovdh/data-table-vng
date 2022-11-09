@@ -1,6 +1,8 @@
+
+
 html,
 body {
-  padding: 0;
+  padding: 20px;
   margin: 0;
   background: #ffffff;
   color:black;
@@ -15,3 +17,6 @@ a {
   box-sizing: border-box;
 }
 
+th {
+  font-weight: 600;
+}
