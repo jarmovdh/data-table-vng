@@ -6,11 +6,11 @@ import WriteIcon from "../../../public/assets/icons/write.svg";
 import SettingsIcon from "../../../public/assets/icons/settings.svg";
 
 interface ButtonProps {
-  binIcon: boolean;
-  lockCloseIcon: boolean;
-  unlockIcon: boolean;
-  writeIcon: boolean;
-  settingsIcon: boolean;
+  binIcon?: boolean;
+  lockCloseIcon?: boolean;
+  unlockIcon?: boolean;
+  writeIcon?: boolean;
+  settingsIcon?: boolean;
 }
 
 export const Button = ({

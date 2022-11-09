@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
+import { Button } from "../button/Button";
 import VerifiedIcon from "../../../public/assets/icons/verified.svg";
 import WarningIcon from "../../../public/assets/icons/warning.svg";
 
@@ -11,51 +12,57 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-function createData(
-  name: string,
-  data: string,
-  mail: string,
-  verified: any,
-  account: string,
-  active: string,
-  action: "",
-) {
-  return { name, data, mail, verified, account, active, action };
-}
-
 const data = [
   {
     name: "Niene Boyen",
     data: "DEGO DOOK Autobranche",
     mail: "niene@maasland.nl",
-    verified: <VerifiedIcon />,
+    verified: true,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
-    action: "",
+    action: (
+      <>
+        <Button writeIcon={true} />
+        <Button lockCloseIcon={true} />
+        <Button binIcon={true} />
+      </>
+    ),
   },
   {
     name: "Ruben Werdmulier Von Elg",
     data: "DEGO DOOK Autobranche",
     mail: "ruben@ontwikkelaar.nl",
-    verified: <VerifiedIcon />,
+    verified: true,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
-    action: "",
+    action: (
+      <>
+        <Button writeIcon={true} />
+        <Button lockCloseIcon={true} />
+        <Button binIcon={true} />
+      </>
+    ),
   },
   {
     name: "Stephan de Preeker",
     data: "-",
     mail: "stephan@memory.com",
-    verified: <WarningIcon />,
+    verified: false,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
-    action: "",
+    action: (
+      <>
+        <Button writeIcon={true} />
+        <Button lockCloseIcon={true} />
+        <Button binIcon={true} />
+      </>
+    ),
   },
   {
     name: "Niene Boyen",
     data: "DEGO DOOK Autobranche",
     mail: "niene@maasland.nl",
-    verified: <VerifiedIcon />,
+    verified: true,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
     action: "",
@@ -64,7 +71,7 @@ const data = [
     name: "Ruben Werdmulier Von Elg",
     data: "DEGO DOOK Autobranche",
     mail: "ruben@ontwikkelaar.nl",
-    verified: <VerifiedIcon />,
+    verified: true,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
     action: "",
@@ -73,7 +80,7 @@ const data = [
     name: "Stephan de Preeker",
     data: "-",
     mail: "stephan@memory.com",
-    verified: <WarningIcon />,
+    verified: false,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
     action: "",
@@ -113,7 +120,9 @@ export const DataTable = () => {
               </TableCell>
               <TableCell align="left">{row.data}</TableCell>
               <TableCell align="left">{row.mail}</TableCell>
-              <TableCell align="center">{row.verified}</TableCell>
+              <TableCell align="center">
+                {row.verified ? <VerifiedIcon /> : <WarningIcon />}
+              </TableCell>
               <TableCell align="left">{row.account}</TableCell>
               <TableCell align="left">{row.active}</TableCell>
               <TableCell align="left">{row.action}</TableCell>
