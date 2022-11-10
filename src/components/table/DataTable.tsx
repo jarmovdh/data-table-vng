@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import * as Styled from "./DataTable.styled";
 
 import { Button } from "../button/Button";
 import VerifiedIcon from "../../../public/assets/icons/verified.svg";
 import WarningIcon from "../../../public/assets/icons/warning.svg";
 
-import styled from "@emotion/styled";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -87,26 +87,21 @@ const data = [
   },
 ];
 
-const TableHead = styled("thead")({
-  background: "#F3F3F3",
-  height: "75px",
-});
-
 export const DataTable = () => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        <Styled.TableHead>
           <TableRow>
-            <TableCell sx={{ fontWeight: "bold" }}>Naam</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>Data Toegang</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>e-mail</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>Geverifieerd</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>Account aangemaakt</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>Laatst actief op</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>Actie</TableCell>
+            <Styled.TableHeader>Naam</Styled.TableHeader>
+            <Styled.TableHeader>Data Toegang</Styled.TableHeader>
+            <Styled.TableHeader>e-mail</Styled.TableHeader>
+            <Styled.TableHeader>Geverifieerd</Styled.TableHeader>
+            <Styled.TableHeader>Account aangemaakt</Styled.TableHeader>
+            <Styled.TableHeader>Laatst actief op</Styled.TableHeader>
+            <Styled.TableHeader>Actie</Styled.TableHeader>
           </TableRow>
-        </TableHead>
+        </Styled.TableHead>
         <TableBody>
           {data.map((row, index) => (
             <TableRow
