@@ -168,7 +168,7 @@ export const DataTable = () => {
       </Styled.Wrapper>
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="data table" role="table">
+        <Table aria-label="data table" role="table">
           <Styled.TableHead>
             <TableRow role="row">
               <Styled.TableHeader role="rowheader">Naam</Styled.TableHeader>
