@@ -4,6 +4,7 @@ import * as Styled from "./DataTable.styled";
 import { Button } from "../button/Button";
 import VerifiedIcon from "../../../public/assets/icons/verified.svg";
 import WarningIcon from "../../../public/assets/icons/warning.svg";
+import SearchIcon from "../../../public/assets/icons/search.svg";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -135,32 +136,31 @@ export const DataTable = () => {
 
   return (
     <>
-      <div>
-        <label htmlFor="">Sorteer op</label>
-        <select name="" id="" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-          <option disabled value="">
-            --Kies Optie--
-          </option>
-          {sortOptions.map((label) => (
-            <option key={label} label={label} value={label}>
-              {label}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <input
+      <Styled.Wrapper>
+        <div>
+          <Styled.Label htmlFor="">Sorteer op</Styled.Label>
+          <Styled.Select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+            {sortOptions.map((label) => (
+              <option key={label} label={label} value={label}>
+                {label}
+              </option>
+            ))}
+          </Styled.Select>
+        </div>
+        <SearchIcon style={{ position: "absolute" }} />
+        <Styled.Input
           type="text"
           placeholder="Zoek gebruiker"
           onChange={(e) => {
             setSearchValue(e.target.value);
           }}
         />
-      </div>
+      </Styled.Wrapper>
+
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650 }} aria-label="data table">
           <Styled.TableHead>
-            <TableRow>
+            <TableRow role="row">
               <Styled.TableHeader>Naam</Styled.TableHeader>
               <Styled.TableHeader>Data Toegang</Styled.TableHeader>
               <Styled.TableHeader>e-mail</Styled.TableHeader>
