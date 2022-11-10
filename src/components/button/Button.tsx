@@ -1,4 +1,6 @@
 import React from "react";
+import * as Styled from "./Button.styled";
+
 import BinIcon from "../../../public/assets/icons/bin.svg";
 import LockCloseIcon from "../../../public/assets/icons/lockclose.svg";
 import UnlockIcon from "../../../public/assets/icons/unlock.svg";
@@ -21,12 +23,12 @@ export const Button = ({
   settingsIcon,
 }: ButtonProps) => {
   return (
-    <button>
+    <Styled.Button>
       {binIcon ? <BinIcon /> : null}
       {lockCloseIcon ? <LockCloseIcon /> : null}
       {unlockIcon ? <UnlockIcon /> : null}
       {writeIcon ? <WriteIcon /> : null}
       {settingsIcon ? <SettingsIcon /> : null}
-    </button>
+    </Styled.Button>
   );
 };

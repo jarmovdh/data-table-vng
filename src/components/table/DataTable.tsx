@@ -7,7 +7,6 @@ import WarningIcon from "../../../public/assets/icons/warning.svg";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
@@ -65,7 +64,13 @@ const data = [
     verified: true,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
-    action: "",
+    action: (
+      <>
+        <Button writeIcon={true} />
+        <Button lockCloseIcon={true} />
+        <Button binIcon={true} />
+      </>
+    ),
   },
   {
     name: "Ruben Werdmulier Von Elg",
@@ -74,7 +79,13 @@ const data = [
     verified: true,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
-    action: "",
+    action: (
+      <>
+        <Button writeIcon={true} />
+        <Button lockCloseIcon={true} />
+        <Button binIcon={true} />
+      </>
+    ),
   },
   {
     name: "Stephan de Preeker",
@@ -83,13 +94,20 @@ const data = [
     verified: false,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
-    action: "",
+    action: (
+      <>
+        <Button writeIcon={true} />
+        <Button lockCloseIcon={true} />
+        <Button binIcon={true} />
+      </>
+    ),
   },
 ];
 
 export const DataTable = () => {
   const [sortOrder, setSortOrder] = useState("");
   const [sortedTable, setSortedTable] = useState(data);
+  const [searchValue, setSearchValue] = useState("");
 
   const sortOptions = ["Naam", "E-mail", "Geverifieerd"];
 
@@ -130,6 +148,15 @@ export const DataTable = () => {
           ))}
         </select>
       </div>
+      <div>
+        <input
+          type="text"
+          placeholder="Zoek gebruiker"
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+          }}
+        />
+      </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <Styled.TableHead>
@@ -144,24 +171,35 @@ export const DataTable = () => {
             </TableRow>
           </Styled.TableHead>
           <TableBody>
-            {sortedTable.map((row, index) => (
-              <TableRow
-                key={index}
-                sx={{
-                  "&:last-child td, &:last-child th": { border: 0 },
-                }}
-              >
-                <Styled.TableRowCell scope="row">{row.name}</Styled.TableRowCell>
-                <Styled.TableRowCell>{row.data}</Styled.TableRowCell>
-                <Styled.TableRowCell>{row.mail}</Styled.TableRowCell>
-                <Styled.TableCellIcons align="center">
-                  {row.verified ? <VerifiedIcon /> : <WarningIcon />}
-                </Styled.TableCellIcons>
-                <Styled.TableRowCell>{row.account}</Styled.TableRowCell>
-                <Styled.TableRowCell>{row.active}</Styled.TableRowCell>
-                <Styled.TableRowCell>{row.action}</Styled.TableRowCell>
-              </TableRow>
-            ))}
+            {sortedTable
+              .filter((value) => {
+                if (searchValue === "") {
+                  return value;
+                } else if (
+                  value.name.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+                  value.mail.toLowerCase().includes(searchValue.toLocaleLowerCase())
+                ) {
+                  return value;
+                }
+              })
+              .map((row, index) => (
+                <TableRow
+                  key={index}
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+                  }}
+                >
+                  <Styled.TableRowCell scope="row">{row.name}</Styled.TableRowCell>
+                  <Styled.TableRowCell>{row.data}</Styled.TableRowCell>
+                  <Styled.TableRowCell>{row.mail}</Styled.TableRowCell>
+                  <Styled.TableCellIcons align="center">
+                    {row.verified ? <VerifiedIcon /> : <WarningIcon />}
+                  </Styled.TableCellIcons>
+                  <Styled.TableRowCell>{row.account}</Styled.TableRowCell>
+                  <Styled.TableRowCell>{row.active}</Styled.TableRowCell>
+                  <Styled.TableRowCell>{row.action}</Styled.TableRowCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
