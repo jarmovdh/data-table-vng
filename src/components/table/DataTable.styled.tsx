@@ -1,15 +1,7 @@
 import styled from "styled-components";
 
-export const Input = styled("input")({
-  padding: 10,
-});
-
 export const Label = styled("label")({
   paddingRight: 10,
-});
-export const Select = styled("select")({
-  color: " #757575",
-  padding: 10,
 });
 
 export const TableHead = styled("thead")({
