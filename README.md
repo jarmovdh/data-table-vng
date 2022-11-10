@@ -1,6 +1,6 @@
 # VNG Data Table
 
-VNG Data Table is part of VNG's Administrator Dashboard and provides information about user information and their activities in the app.
+De Datavoorziening Energietransitie Gebouwde Omgeving (DEGO) helps municipalities to work with the data needed to create a Heat Transition Vision. The VNG Data Table is part of VNG's Administrator Dashboard and provides information about user information and their activities in the app. Users can use the Talbe to search for users and their roles.
 
 ## Installation 💿
 
@@ -30,3 +30,4 @@ npm run dev
 - Next.JS
 - TypeScript
 - MUI
+- Styled Components
