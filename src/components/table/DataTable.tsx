@@ -140,19 +140,18 @@ export const DataTable = () => {
       <Styled.Wrapper>
         <div>
           <Styled.Label htmlFor="">Sorteer op</Styled.Label>
-          <Select
-            style={{ minWidth: 200 }}
+          <Styled.StyledSelect
             value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
+            onChange={(e) => setSortOrder(e.target.value as string)}
           >
             {sortOptions.map((label) => (
               <MenuItem key={label} value={label}>
                 {label}
               </MenuItem>
             ))}
-          </Select>
+          </Styled.StyledSelect>
         </div>
-        <OutlinedInput
+        <Styled.StyledOutlineInput
           type="text"
           placeholder="Zoek gebruiker"
           id="input-with-icon-adornment"
@@ -168,7 +167,7 @@ export const DataTable = () => {
       </Styled.Wrapper>
 
       <TableContainer component={Paper}>
-        <Table aria-label="data table" role="table">
+        <Styled.StyledTable aria-label="data table" role="table">
           <Styled.TableHead>
             <TableRow role="row">
               <Styled.TableHeader role="rowheader">Naam</Styled.TableHeader>
@@ -213,7 +212,7 @@ export const DataTable = () => {
                 </TableRow>
               ))}
           </TableBody>
-        </Table>
+        </Styled.StyledTable>
       </TableContainer>
     </>
   );

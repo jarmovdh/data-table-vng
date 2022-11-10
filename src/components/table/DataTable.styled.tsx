@@ -1,7 +1,21 @@
+import { OutlinedInput, Select, Table } from "@mui/material";
 import styled from "styled-components";
 
 export const Label = styled("label")({
   paddingRight: 10,
+});
+
+export const StyledOutlineInput = styled(OutlinedInput)({
+  borderRadius: 1,
+});
+
+export const StyledSelect = styled(Select)({
+  borderRadius: 1,
+  minWidth: 200,
+});
+
+export const StyledTable = styled(Table)({
+  borderRadius: 1,
 });
 
 export const TableHead = styled("thead")({
