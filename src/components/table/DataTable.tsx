@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Styled from "./DataTable.styled";
 
 import { Button } from "../button/Button";
@@ -88,43 +88,83 @@ const data = [
 ];
 
 export const DataTable = () => {
+  const [sortOrder, setSortOrder] = useState("");
+  const [sortedTable, setSortedTable] = useState(data);
+
+  const sortOptions = ["Naam", "E-mail", "Geverifieerd"];
+
+  const handleSort = () => {
+    const sort = data.sort((a, b) => {
+      if (a.name < b.name) {
+        return sortOrder === "Naam" ? 1 : -1;
+      }
+      if (b.mail < a.mail) {
+        return sortOrder === "E-mail" ? 1 : -1;
+      }
+      if (a.verified < b.verified) {
+        return sortOrder === "Geverifieerd" ? 1 : -1;
+      }
+
+      return 0;
+    });
+
+    setSortedTable(sort);
+  };
+
+  useEffect(() => {
+    handleSort();
+  }, [sortOrder, data]);
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <Styled.TableHead>
-          <TableRow>
-            <Styled.TableHeader>Naam</Styled.TableHeader>
-            <Styled.TableHeader>Data Toegang</Styled.TableHeader>
-            <Styled.TableHeader>e-mail</Styled.TableHeader>
-            <Styled.TableHeader>Geverifieerd</Styled.TableHeader>
-            <Styled.TableHeader>Account aangemaakt</Styled.TableHeader>
-            <Styled.TableHeader>Laatst actief op</Styled.TableHeader>
-            <Styled.TableHeader>Actie</Styled.TableHeader>
-          </TableRow>
-        </Styled.TableHead>
-        <TableBody>
-          {data.map((row, index) => (
-            <TableRow
-              key={index}
-              sx={{
-                "&:last-child td, &:last-child th": { border: 0 },
-              }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="left">{row.data}</TableCell>
-              <TableCell align="left">{row.mail}</TableCell>
-              <TableCell align="center">
-                {row.verified ? <VerifiedIcon /> : <WarningIcon />}
-              </TableCell>
-              <TableCell align="left">{row.account}</TableCell>
-              <TableCell align="left">{row.active}</TableCell>
-              <TableCell align="left">{row.action}</TableCell>
-            </TableRow>
+    <>
+      <div>
+        <label htmlFor="">Sorteer op</label>
+        <select name="" id="" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+          <option disabled value="">
+            --Kies Optie--
+          </option>
+          {sortOptions.map((label) => (
+            <option key={label} label={label} value={label}>
+              {label}
+            </option>
           ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        </select>
+      </div>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Styled.TableHead>
+            <TableRow>
+              <Styled.TableHeader>Naam</Styled.TableHeader>
+              <Styled.TableHeader>Data Toegang</Styled.TableHeader>
+              <Styled.TableHeader>e-mail</Styled.TableHeader>
+              <Styled.TableHeader>Geverifieerd</Styled.TableHeader>
+              <Styled.TableHeader>Account aangemaakt</Styled.TableHeader>
+              <Styled.TableHeader>Laatst actief op</Styled.TableHeader>
+              <Styled.TableHeader>Actie</Styled.TableHeader>
+            </TableRow>
+          </Styled.TableHead>
+          <TableBody>
+            {sortedTable.map((row, index) => (
+              <TableRow
+                key={index}
+                sx={{
+                  "&:last-child td, &:last-child th": { border: 0 },
+                }}
+              >
+                <Styled.TableRowCell scope="row">{row.name}</Styled.TableRowCell>
+                <Styled.TableRowCell>{row.data}</Styled.TableRowCell>
+                <Styled.TableRowCell>{row.mail}</Styled.TableRowCell>
+                <Styled.TableCellIcons align="center">
+                  {row.verified ? <VerifiedIcon /> : <WarningIcon />}
+                </Styled.TableCellIcons>
+                <Styled.TableRowCell>{row.account}</Styled.TableRowCell>
+                <Styled.TableRowCell>{row.active}</Styled.TableRowCell>
+                <Styled.TableRowCell>{row.action}</Styled.TableRowCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 };

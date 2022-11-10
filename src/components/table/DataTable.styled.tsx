@@ -12,3 +12,15 @@ export const TableHeader = styled("th")({
   padding: 16,
   textAlign: "left",
 });
+
+export const TableRowCell = styled("th")({
+  borderBottom: "1px solid #000",
+  fontSize: 13,
+  padding: 20,
+  textAlign: "left",
+});
+
+export const TableCellIcons = styled("th")({
+  borderBottom: "1px solid #000",
+  textAlign: "center",
+});
