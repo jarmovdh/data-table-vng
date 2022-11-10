@@ -11,6 +11,7 @@ import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { MenuItem, Select, OutlinedInput, InputAdornment } from "@mui/material";
 
 const data = [
   {
@@ -139,32 +140,41 @@ export const DataTable = () => {
       <Styled.Wrapper>
         <div>
           <Styled.Label htmlFor="">Sorteer op</Styled.Label>
-          <Styled.Select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+          <Select
+            style={{ minWidth: 200 }}
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
             {sortOptions.map((label) => (
-              <option key={label} label={label} value={label}>
+              <MenuItem key={label} value={label}>
                 {label}
-              </option>
+              </MenuItem>
             ))}
-          </Styled.Select>
+          </Select>
         </div>
-        <SearchIcon style={{ position: "absolute" }} />
-        <Styled.Input
+        <OutlinedInput
           type="text"
           placeholder="Zoek gebruiker"
+          id="input-with-icon-adornment"
           onChange={(e) => {
             setSearchValue(e.target.value);
           }}
+          endAdornment={
+            <InputAdornment position="end">
+              <SearchIcon />
+            </InputAdornment>
+          }
         />
       </Styled.Wrapper>
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="data table" role="table">
+        <Table aria-label="data table" role="table">
           <Styled.TableHead>
             <TableRow role="row">
               <Styled.TableHeader role="rowheader">Naam</Styled.TableHeader>
               <Styled.TableHeader role="rowheader">Data Toegang</Styled.TableHeader>
               <Styled.TableHeader role="rowheader">e-mail</Styled.TableHeader>
-              <Styled.TableHeader role="rowheader"> Geverifieerd</Styled.TableHeader>
+              <Styled.TableHeader role="rowheader">Geverifieerd</Styled.TableHeader>
               <Styled.TableHeader role="rowheader">Account aangemaakt</Styled.TableHeader>
               <Styled.TableHeader role="rowheader">Laatst actief op</Styled.TableHeader>
               <Styled.TableHeader role="rowheader">Actie</Styled.TableHeader>
