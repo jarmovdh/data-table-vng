@@ -158,16 +158,16 @@ export const DataTable = () => {
       </Styled.Wrapper>
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="data table">
+        <Table sx={{ minWidth: 650 }} aria-label="data table" role="table">
           <Styled.TableHead>
             <TableRow role="row">
-              <Styled.TableHeader>Naam</Styled.TableHeader>
-              <Styled.TableHeader>Data Toegang</Styled.TableHeader>
-              <Styled.TableHeader>e-mail</Styled.TableHeader>
-              <Styled.TableHeader>Geverifieerd</Styled.TableHeader>
-              <Styled.TableHeader>Account aangemaakt</Styled.TableHeader>
-              <Styled.TableHeader>Laatst actief op</Styled.TableHeader>
-              <Styled.TableHeader>Actie</Styled.TableHeader>
+              <Styled.TableHeader role="rowheader">Naam</Styled.TableHeader>
+              <Styled.TableHeader role="rowheader">Data Toegang</Styled.TableHeader>
+              <Styled.TableHeader role="rowheader">e-mail</Styled.TableHeader>
+              <Styled.TableHeader role="rowheader"> Geverifieerd</Styled.TableHeader>
+              <Styled.TableHeader role="rowheader">Account aangemaakt</Styled.TableHeader>
+              <Styled.TableHeader role="rowheader">Laatst actief op</Styled.TableHeader>
+              <Styled.TableHeader role="rowheader">Actie</Styled.TableHeader>
             </TableRow>
           </Styled.TableHead>
           <TableBody>
@@ -189,15 +189,17 @@ export const DataTable = () => {
                     "&:last-child td, &:last-child th": { border: 0 },
                   }}
                 >
-                  <Styled.TableRowCell scope="row">{row.name}</Styled.TableRowCell>
-                  <Styled.TableRowCell>{row.data}</Styled.TableRowCell>
-                  <Styled.TableRowCell>{row.mail}</Styled.TableRowCell>
-                  <Styled.TableCellIcons align="center">
+                  <Styled.TableRowCell scope="row" role="cell">
+                    {row.name}
+                  </Styled.TableRowCell>
+                  <Styled.TableRowCell role="cell">{row.data}</Styled.TableRowCell>
+                  <Styled.TableRowCell role="cell">{row.mail}</Styled.TableRowCell>
+                  <Styled.TableCellIcons role="cell">
                     {row.verified ? <VerifiedIcon /> : <WarningIcon />}
                   </Styled.TableCellIcons>
-                  <Styled.TableRowCell>{row.account}</Styled.TableRowCell>
-                  <Styled.TableRowCell>{row.active}</Styled.TableRowCell>
-                  <Styled.TableRowCell>{row.action}</Styled.TableRowCell>
+                  <Styled.TableRowCell role="cell">{row.account}</Styled.TableRowCell>
+                  <Styled.TableRowCell role="cell">{row.active}</Styled.TableRowCell>
+                  <Styled.TableRowCell role="cell">{row.action}</Styled.TableRowCell>
                 </TableRow>
               ))}
           </TableBody>
