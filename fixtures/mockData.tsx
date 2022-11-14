@@ -1,5 +1,3 @@
-import { Button } from "../src/components/button/Button";
-
 const data = [
   {
     name: "Niene Boyen",
@@ -8,7 +6,7 @@ const data = [
     verified: true,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
-    action: ["write", "bin"],
+    action: ["write", "setting", "lock"],
   },
   {
     name: "Ruben Werdmulier Von Elg",
@@ -17,7 +15,7 @@ const data = [
     verified: true,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
-    action: "lock",
+    action: ["unlock", "bin", "lock"],
   },
   {
     name: "Stephan de Preeker",
@@ -26,34 +24,7 @@ const data = [
     verified: false,
     account: "2 nov 2022",
     active: "2 nov 2022 11:05",
-    action: "bin",
-  },
-  {
-    name: "Niene Boyen",
-    data: "DEGO DOOK Autobranche",
-    mail: "niene@maasland.nl",
-    verified: true,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: "bin",
-  },
-  {
-    name: "Ruben Werdmulier Von Elg",
-    data: "DEGO DOOK Autobranche",
-    mail: "ruben@ontwikkelaar.nl",
-    verified: true,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: "bin",
-  },
-  {
-    name: "Stephan de Preeker",
-    data: "-",
-    mail: "stephan@memory.com",
-    verified: false,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: "bin",
+    action: ["write", "bin", "lock"],
   },
 ];
 

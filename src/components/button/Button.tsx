@@ -8,7 +8,7 @@ import WriteIcon from "../../../public/assets/icons/write.svg";
 import SettingsIcon from "../../../public/assets/icons/settings.svg";
 
 interface ButtonProps {
-  icon: string | string[];
+  icon: string;
 }
 
 export const Button = ({ icon }: ButtonProps) => {

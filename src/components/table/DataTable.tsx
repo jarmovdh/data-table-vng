@@ -7,7 +7,7 @@ import WarningIcon from "../../../public/assets/icons/warning.svg";
 import SearchIcon from "../../../public/assets/icons/search.svg";
 
 import TableBody from "@mui/material/TableBody";
-import { MenuItem, InputAdornment, OutlinedInput, Table } from "@mui/material";
+import { MenuItem, InputAdornment, Table } from "@mui/material";
 import { Button } from "../button/Button";
 
 export const DataTable = () => {
@@ -41,6 +41,7 @@ export const DataTable = () => {
 
   const buttonIcons = data.map((entry) => entry.action);
   console.log(buttonIcons);
+
   return (
     <>
       <Styled.Wrapper>
@@ -57,7 +58,7 @@ export const DataTable = () => {
             ))}
           </Styled.CustomSelect>
         </div>
-        <OutlinedInput
+        <Styled.CustomOutlineInput
           type="text"
           placeholder="Zoek gebruiker"
           id="input-with-icon-adornment"
@@ -115,7 +116,9 @@ export const DataTable = () => {
                   <Styled.TableRowCell role="cell">{row.account}</Styled.TableRowCell>
                   <Styled.TableRowCell role="cell">{row.active}</Styled.TableRowCell>
                   <Styled.TableRowCell role="cell">
-                    <Button icon={row.action} />
+                    {buttonIcons.map((button, index) => (
+                      <Button key={index} icon={button[index]} />
+                    ))}
                   </Styled.TableRowCell>
                 </Styled.CustomRow>
               ))}

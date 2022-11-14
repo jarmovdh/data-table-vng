@@ -5,6 +5,10 @@ export const Container = styled(TableContainer)({
   borderRadius: 1,
 });
 
+export const CustomOutlineInput = styled(OutlinedInput)({
+  borderRadius: 1,
+});
+
 export const CustomRow = styled(TableRow)({
   borderBottom: "1px solid #757575",
 });
@@ -12,6 +16,10 @@ export const CustomRow = styled(TableRow)({
 export const CustomSelect = styled(Select)({
   borderRadius: 1,
   minWidth: 200,
+});
+
+export const CustomTable = styled(Table)({
+  borderRadius: 1,
 });
 
 export const Label = styled("label")({
@@ -33,6 +41,7 @@ export const TableHeader = styled("th")({
 
 export const TableRowCell = styled("th")({
   fontSize: 13,
+  fontWeight: 400,
   padding: 20,
   textAlign: "left",
 });
