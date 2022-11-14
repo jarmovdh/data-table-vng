@@ -46,7 +46,7 @@ export const DataTable = () => {
     <>
       <Styled.Wrapper>
         <div>
-          <Styled.Label htmlFor="">Sorteer op</Styled.Label>
+          <Styled.Label>Sorteer op</Styled.Label>
           <Styled.CustomSelect
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value as string)}
@@ -111,8 +111,8 @@ export const DataTable = () => {
                   <Styled.TableRowCell role="cell">{row.account}</Styled.TableRowCell>
                   <Styled.TableRowCell role="cell">{row.active}</Styled.TableRowCell>
                   <Styled.TableRowCell role="cell">
-                    {buttonIcons.map((button, index) => (
-                      <Button key={index} icon={button[index]} />
+                    {buttonIcons.map((action, index) => (
+                      <Button key={index} icon={action[index]} />
                     ))}
                   </Styled.TableRowCell>
                 </Styled.CustomRow>
