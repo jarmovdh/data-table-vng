@@ -7,6 +7,7 @@ export const Container = styled(TableContainer)({
 
 export const CustomOutlineInput = styled(OutlinedInput)({
   borderRadius: 1,
+  height: 42,
 });
 
 export const CustomRow = styled(TableRow)({
@@ -15,7 +16,8 @@ export const CustomRow = styled(TableRow)({
 
 export const CustomSelect = styled(Select)({
   borderRadius: 1,
-  minWidth: 200,
+  height: 42,
+  minWidth: 150,
 });
 
 export const CustomTable = styled(Table)({
