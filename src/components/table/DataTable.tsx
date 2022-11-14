@@ -1,110 +1,14 @@
 import React, { useEffect, useState } from "react";
 import * as Styled from "./DataTable.styled";
 
-import { Button } from "../button/Button";
+import data from "../../../fixtures/mockData";
 import VerifiedIcon from "../../../public/assets/icons/verified.svg";
 import WarningIcon from "../../../public/assets/icons/warning.svg";
 import SearchIcon from "../../../public/assets/icons/search.svg";
 
-import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { MenuItem, Select, OutlinedInput, InputAdornment } from "@mui/material";
-
-const data = [
-  {
-    name: "Niene Boyen",
-    data: "DEGO DOOK Autobranche",
-    mail: "niene@maasland.nl",
-    verified: true,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: (
-      <>
-        <Button writeIcon={true} />
-        <Button lockCloseIcon={true} />
-        <Button binIcon={true} />
-      </>
-    ),
-  },
-  {
-    name: "Ruben Werdmulier Von Elg",
-    data: "DEGO DOOK Autobranche",
-    mail: "ruben@ontwikkelaar.nl",
-    verified: true,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: (
-      <>
-        <Button writeIcon={true} />
-        <Button lockCloseIcon={true} />
-        <Button binIcon={true} />
-      </>
-    ),
-  },
-  {
-    name: "Stephan de Preeker",
-    data: "-",
-    mail: "stephan@memory.com",
-    verified: false,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: (
-      <>
-        <Button writeIcon={true} />
-        <Button lockCloseIcon={true} />
-        <Button binIcon={true} />
-      </>
-    ),
-  },
-  {
-    name: "Niene Boyen",
-    data: "DEGO DOOK Autobranche",
-    mail: "niene@maasland.nl",
-    verified: true,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: (
-      <>
-        <Button writeIcon={true} />
-        <Button lockCloseIcon={true} />
-        <Button binIcon={true} />
-      </>
-    ),
-  },
-  {
-    name: "Ruben Werdmulier Von Elg",
-    data: "DEGO DOOK Autobranche",
-    mail: "ruben@ontwikkelaar.nl",
-    verified: true,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: (
-      <>
-        <Button writeIcon={true} />
-        <Button lockCloseIcon={true} />
-        <Button binIcon={true} />
-      </>
-    ),
-  },
-  {
-    name: "Stephan de Preeker",
-    data: "-",
-    mail: "stephan@memory.com",
-    verified: false,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: (
-      <>
-        <Button writeIcon={true} />
-        <Button lockCloseIcon={true} />
-        <Button binIcon={true} />
-      </>
-    ),
-  },
-];
+import { MenuItem, InputAdornment, OutlinedInput, Table } from "@mui/material";
+import { Button } from "../button/Button";
 
 export const DataTable = () => {
   const [sortOrder, setSortOrder] = useState("");
@@ -119,7 +23,7 @@ export const DataTable = () => {
         return sortOrder === "Naam" ? 1 : -1;
       }
       if (b.mail < a.mail) {
-        return sortOrder === "E-mail" ? 1 : -1;
+        return sortOrder === "E-mail" ? -1 : 1;
       }
       if (a.verified < b.verified) {
         return sortOrder === "Geverifieerd" ? 1 : -1;
@@ -135,12 +39,14 @@ export const DataTable = () => {
     handleSort();
   }, [sortOrder, data]);
 
+  const buttonIcons = data.map((entry) => entry.action);
+  console.log(buttonIcons);
   return (
     <>
       <Styled.Wrapper>
         <div>
           <Styled.Label htmlFor="">Sorteer op</Styled.Label>
-          <Styled.StyledSelect
+          <Styled.CustomSelect
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value as string)}
           >
@@ -149,9 +55,9 @@ export const DataTable = () => {
                 {label}
               </MenuItem>
             ))}
-          </Styled.StyledSelect>
+          </Styled.CustomSelect>
         </div>
-        <Styled.StyledOutlineInput
+        <OutlinedInput
           type="text"
           placeholder="Zoek gebruiker"
           id="input-with-icon-adornment"
@@ -166,10 +72,10 @@ export const DataTable = () => {
         />
       </Styled.Wrapper>
 
-      <TableContainer component={Paper}>
-        <Styled.StyledTable aria-label="data table" role="table">
+      <Styled.Container>
+        <Table aria-label="data table" role="table">
           <Styled.TableHead>
-            <TableRow role="row">
+            <Styled.CustomRow role="row">
               <Styled.TableHeader role="rowheader">Naam</Styled.TableHeader>
               <Styled.TableHeader role="rowheader">Data Toegang</Styled.TableHeader>
               <Styled.TableHeader role="rowheader">e-mail</Styled.TableHeader>
@@ -177,7 +83,7 @@ export const DataTable = () => {
               <Styled.TableHeader role="rowheader">Account aangemaakt</Styled.TableHeader>
               <Styled.TableHeader role="rowheader">Laatst actief op</Styled.TableHeader>
               <Styled.TableHeader role="rowheader">Actie</Styled.TableHeader>
-            </TableRow>
+            </Styled.CustomRow>
           </Styled.TableHead>
           <TableBody>
             {sortedTable
@@ -192,7 +98,7 @@ export const DataTable = () => {
                 }
               })
               .map((row, index) => (
-                <TableRow
+                <Styled.CustomRow
                   key={index}
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -208,12 +114,14 @@ export const DataTable = () => {
                   </Styled.TableCellIcons>
                   <Styled.TableRowCell role="cell">{row.account}</Styled.TableRowCell>
                   <Styled.TableRowCell role="cell">{row.active}</Styled.TableRowCell>
-                  <Styled.TableRowCell role="cell">{row.action}</Styled.TableRowCell>
-                </TableRow>
+                  <Styled.TableRowCell role="cell">
+                    <Button icon={row.action} />
+                  </Styled.TableRowCell>
+                </Styled.CustomRow>
               ))}
           </TableBody>
-        </Styled.StyledTable>
-      </TableContainer>
+        </Table>
+      </Styled.Container>
     </>
   );
 };

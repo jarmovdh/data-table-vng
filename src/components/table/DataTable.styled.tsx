@@ -1,21 +1,21 @@
-import { OutlinedInput, Select, Table } from "@mui/material";
+import { OutlinedInput, Select, Table, TableContainer, TableRow } from "@mui/material";
 import styled from "styled-components";
 
-export const Label = styled("label")({
-  paddingRight: 10,
-});
-
-export const StyledOutlineInput = styled(OutlinedInput)({
+export const Container = styled(TableContainer)({
   borderRadius: 1,
 });
 
-export const StyledSelect = styled(Select)({
+export const CustomRow = styled(TableRow)({
+  borderBottom: "1px solid #757575",
+});
+
+export const CustomSelect = styled(Select)({
   borderRadius: 1,
   minWidth: 200,
 });
 
-export const StyledTable = styled(Table)({
-  borderRadius: 1,
+export const Label = styled("label")({
+  paddingRight: 10,
 });
 
 export const TableHead = styled("thead")({
@@ -24,22 +24,20 @@ export const TableHead = styled("thead")({
 });
 
 export const TableHeader = styled("th")({
-  borderBottom: "1px solid #000",
+  color: "#212121",
   fontSize: 16,
-  fontWeight: "bold",
+  fontWeight: 600,
   padding: 16,
   textAlign: "left",
 });
 
 export const TableRowCell = styled("th")({
-  borderBottom: "1px solid #000",
   fontSize: 13,
   padding: 20,
   textAlign: "left",
 });
 
 export const TableCellIcons = styled("th")({
-  borderBottom: "1px solid #000",
   textAlign: "center",
 });
 

@@ -8,27 +8,17 @@ import WriteIcon from "../../../public/assets/icons/write.svg";
 import SettingsIcon from "../../../public/assets/icons/settings.svg";
 
 interface ButtonProps {
-  binIcon?: boolean;
-  lockCloseIcon?: boolean;
-  unlockIcon?: boolean;
-  writeIcon?: boolean;
-  settingsIcon?: boolean;
+  icon: string | string[];
 }
 
-export const Button = ({
-  binIcon,
-  lockCloseIcon,
-  unlockIcon,
-  writeIcon,
-  settingsIcon,
-}: ButtonProps) => {
-  return (
-    <Styled.Button>
-      {binIcon ? <BinIcon /> : null}
-      {lockCloseIcon ? <LockCloseIcon /> : null}
-      {unlockIcon ? <UnlockIcon /> : null}
-      {writeIcon ? <WriteIcon /> : null}
-      {settingsIcon ? <SettingsIcon /> : null}
-    </Styled.Button>
-  );
+export const Button = ({ icon }: ButtonProps) => {
+  const getIcon = () => {
+    if (icon === "bin") return <BinIcon />;
+    if (icon === "lock") return <LockCloseIcon />;
+    if (icon === "unlock") return <UnlockIcon />;
+    if (icon === "write") return <WriteIcon />;
+    if (icon === "setting") return <SettingsIcon />;
+  };
+
+  return <Styled.Button>{getIcon()}</Styled.Button>;
 };
