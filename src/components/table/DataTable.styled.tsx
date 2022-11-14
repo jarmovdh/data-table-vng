@@ -56,4 +56,9 @@ export const Wrapper = styled("div")({
   gap: 20,
   justifyContent: "flex-end",
   paddingBottom: 15,
+  "@media (max-width: 730px)": {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
+  },
 });
