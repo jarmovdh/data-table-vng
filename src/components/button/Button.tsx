@@ -9,9 +9,10 @@ import SettingsIcon from "../../../public/assets/icons/settings.svg";
 
 interface ButtonProps {
   icon: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const Button = ({ icon }: ButtonProps) => {
+export const Button = ({ icon, onClick }: ButtonProps) => {
   const getIcon = () => {
     if (icon === "bin") return <BinIcon />;
     if (icon === "lock") return <LockCloseIcon />;
@@ -20,5 +21,5 @@ export const Button = ({ icon }: ButtonProps) => {
     if (icon === "setting") return <SettingsIcon />;
   };
 
-  return <Styled.Button>{getIcon()}</Styled.Button>;
+  return <Styled.Button onClick={onClick}>{getIcon()}</Styled.Button>;
 };

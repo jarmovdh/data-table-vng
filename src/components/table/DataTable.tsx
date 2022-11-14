@@ -99,12 +99,7 @@ export const DataTable = () => {
                 }
               })
               .map((row, index) => (
-                <Styled.CustomRow
-                  key={index}
-                  sx={{
-                    "&:last-child td, &:last-child th": { border: 0 },
-                  }}
-                >
+                <Styled.CustomRow key={index}>
                   <Styled.TableRowCell scope="row" role="cell">
                     {row.name}
                   </Styled.TableRowCell>
