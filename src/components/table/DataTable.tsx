@@ -15,7 +15,24 @@ export const DataTable = () => {
   const [sortedTable, setSortedTable] = useState(data);
   const [searchValue, setSearchValue] = useState("");
 
-  const sortOptions = ["Naam", "E-mail", "Geverifieerd"];
+  const sortOptions = [
+    {
+      label: "fullName",
+      value: "Name",
+    },
+    {
+      label: "mail",
+      value: "E-mail",
+    },
+    {
+      label: "verified",
+      value: "Geverifieerd",
+    },
+    {
+      label: "accesTo",
+      value: "Toegang",
+    },
+  ];
 
   const filteredTable = sortedTable.filter((value) => {
     if (searchValue === "") {
@@ -28,12 +45,10 @@ export const DataTable = () => {
     }
   });
 
-  const keys = Object.keys(data[0]);
-
-  const handleSort = (sortKey: string) => {
+  const handleSort = (sortOptions: string | any) => {
     const sort = data.sort((a, b) => {
-      const keyA = a[sortKey];
-      const keyB = b[sortKey];
+      const keyA = a[sortOptions];
+      const keyB = b[sortOptions];
 
       if (keyA < keyB) {
         return -1;
@@ -48,7 +63,7 @@ export const DataTable = () => {
   };
 
   useEffect(() => {
-    handleSort();
+    handleSort(sortOptions as string | any);
   }, [sortOrder, data]);
 
   const buttonIcons = data.map((entry) => entry.setActions);
@@ -62,9 +77,9 @@ export const DataTable = () => {
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value as string)}
           >
-            {sortOptions.map((label) => (
-              <MenuItem key={label} value={label}>
-                {label}
+            {sortOptions.map(({ label, value }) => (
+              <MenuItem key={label} value={label} onClick={() => handleSort(label)}>
+                {value}
               </MenuItem>
             ))}
           </Styled.CustomSelect>
