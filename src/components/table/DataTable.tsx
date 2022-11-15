@@ -17,9 +17,25 @@ export const DataTable = () => {
 
   const sortOptions = ["Naam", "E-mail", "Geverifieerd"];
 
+  const filteredTable = sortedTable.filter((value) => {
+    if (searchValue === "") {
+      return value;
+    } else if (
+      value.fullName.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+      value.mail.toLowerCase().includes(searchValue.toLocaleLowerCase())
+    ) {
+      return value;
+    }
+  });
+
   const handleSort = () => {
+    const byName = data.sort((a, b) => {
+      if (a.fullName < b.fullName) return 1;
+      return -1;
+    });
+
     const sort = data.sort((a, b) => {
-      if (a.name < b.name) {
+      if (a.fullName < b.fullName) {
         return sortOrder === "Naam" ? 1 : -1;
       }
       if (b.mail < a.mail) {
@@ -39,8 +55,7 @@ export const DataTable = () => {
     handleSort();
   }, [sortOrder, data]);
 
-  const buttonIcons = data.map((entry) => entry.action);
-  console.log(buttonIcons);
+  const buttonIcons = data.map((entry) => entry.setActions);
 
   return (
     <>
@@ -74,49 +89,36 @@ export const DataTable = () => {
       </Styled.Wrapper>
 
       <Styled.Container>
-        <Table aria-label="data table" role="table">
+        <Table aria-label="data table">
           <Styled.TableHead>
-            <Styled.CustomRow role="row">
-              <Styled.TableHeader role="rowheader">Naam</Styled.TableHeader>
-              <Styled.TableHeader role="rowheader">Data Toegang</Styled.TableHeader>
-              <Styled.TableHeader role="rowheader">e-mail</Styled.TableHeader>
-              <Styled.TableHeader role="rowheader">Geverifieerd</Styled.TableHeader>
-              <Styled.TableHeader role="rowheader">Account aangemaakt</Styled.TableHeader>
-              <Styled.TableHeader role="rowheader">Laatst actief op</Styled.TableHeader>
-              <Styled.TableHeader role="rowheader">Actie</Styled.TableHeader>
+            <Styled.CustomRow>
+              <Styled.TableHeader>Naam</Styled.TableHeader>
+              <Styled.TableHeader>Data Toegang</Styled.TableHeader>
+              <Styled.TableHeader>e-mail</Styled.TableHeader>
+              <Styled.TableHeader>Geverifieerd</Styled.TableHeader>
+              <Styled.TableHeader>Account aangemaakt</Styled.TableHeader>
+              <Styled.TableHeader>Laatst actief op</Styled.TableHeader>
+              <Styled.TableHeader>Actie</Styled.TableHeader>
             </Styled.CustomRow>
           </Styled.TableHead>
           <TableBody>
-            {sortedTable
-              .filter((value) => {
-                if (searchValue === "") {
-                  return value;
-                } else if (
-                  value.name.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
-                  value.mail.toLowerCase().includes(searchValue.toLocaleLowerCase())
-                ) {
-                  return value;
-                }
-              })
-              .map((row, index) => (
-                <Styled.CustomRow key={index}>
-                  <Styled.TableRowCell scope="row" role="cell">
-                    {row.name}
-                  </Styled.TableRowCell>
-                  <Styled.TableRowCell role="cell">{row.data}</Styled.TableRowCell>
-                  <Styled.TableRowCell role="cell">{row.mail}</Styled.TableRowCell>
-                  <Styled.TableCellIcons role="cell">
-                    {row.verified ? <VerifiedIcon /> : <WarningIcon />}
-                  </Styled.TableCellIcons>
-                  <Styled.TableRowCell role="cell">{row.account}</Styled.TableRowCell>
-                  <Styled.TableRowCell role="cell">{row.active}</Styled.TableRowCell>
-                  <Styled.TableRowCell role="cell">
-                    {buttonIcons.map((action, index) => (
-                      <Button key={index} icon={action[index]} />
-                    ))}
-                  </Styled.TableRowCell>
-                </Styled.CustomRow>
-              ))}
+            {filteredTable.map((row, index) => (
+              <Styled.CustomRow key={index}>
+                <Styled.TableRowCell scope="row">{row.fullName}</Styled.TableRowCell>
+                <Styled.TableRowCell>{row.accesTo}</Styled.TableRowCell>
+                <Styled.TableRowCell>{row.mail}</Styled.TableRowCell>
+                <Styled.TableCellIcons>
+                  {row.verified ? <VerifiedIcon /> : <WarningIcon />}
+                </Styled.TableCellIcons>
+                <Styled.TableRowCell>{row.accountCreated}</Styled.TableRowCell>
+                <Styled.TableRowCell>{row.lastActive}</Styled.TableRowCell>
+                <Styled.TableRowCell>
+                  {buttonIcons.map((action, index) => (
+                    <Button key={index} icon={action[index]} />
+                  ))}
+                </Styled.TableRowCell>
+              </Styled.CustomRow>
+            ))}
           </TableBody>
         </Table>
       </Styled.Container>

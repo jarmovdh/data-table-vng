@@ -1,30 +1,45 @@
+const date = new Date();
+const currentDate = date.toLocaleDateString("nl-NL", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+
+const dateActive = date.toLocaleDateString("nl-NL", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+});
+
 const data = [
   {
-    name: "Niene Boyen",
-    data: "DEGO DOOK Autobranche",
+    fullName: "Niene Boyen",
+    accesTo: "DEGO DOOK Autobranche",
     mail: "niene@maasland.nl",
     verified: true,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: ["write", "setting", "lock"],
+    accountCreated: currentDate,
+    lastActive: dateActive,
+    setActions: ["write", "setting", "lock"],
   },
   {
-    name: "Ruben Werdmulier Von Elg",
-    data: "DEGO DOOK Autobranche",
+    fullName: "Ruben Werdmulier Von Elg",
+    accesTo: "DEGO DOOK Autobranche",
     mail: "ruben@ontwikkelaar.nl",
     verified: true,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: ["unlock", "bin", "lock"],
+    accountCreated: currentDate,
+    lastActive: dateActive,
+    setActions: ["unlock", "bin", "lock"],
   },
   {
-    name: "Stephan de Preeker",
-    data: "-",
+    fullName: "Stephan de Preeker",
+    accesTo: "-",
     mail: "stephan@memory.com",
     verified: false,
-    account: "2 nov 2022",
-    active: "2 nov 2022 11:05",
-    action: ["write", "bin", "lock"],
+    accountCreated: currentDate,
+    lastActive: dateActive,
+    setActions: ["write", "bin", "lock"],
   },
 ];
 
