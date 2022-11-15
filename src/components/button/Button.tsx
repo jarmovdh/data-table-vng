@@ -8,18 +8,18 @@ import WriteIcon from "../../../public/assets/icons/write.svg";
 import SettingsIcon from "../../../public/assets/icons/settings.svg";
 
 interface ButtonProps {
-  icon: string;
+  icon: "bin" | "lock" | "unlock" | "write" | "setting" | string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const Button = ({ icon, onClick }: ButtonProps) => {
-  const getIcon = () => {
-    if (icon === "bin") return <BinIcon />;
-    if (icon === "lock") return <LockCloseIcon />;
-    if (icon === "unlock") return <UnlockIcon />;
-    if (icon === "write") return <WriteIcon />;
-    if (icon === "setting") return <SettingsIcon />;
-  };
-
-  return <Styled.Button onClick={onClick}>{getIcon()}</Styled.Button>;
+  return (
+    <Styled.Button onClick={onClick}>
+      {icon === "bin" && <BinIcon />}
+      {icon === "lock" && <LockCloseIcon />}
+      {icon === "unlock" && <UnlockIcon />}
+      {icon === "write" && <WriteIcon />}
+      {icon === "setting" && <SettingsIcon />}
+    </Styled.Button>
+  );
 };

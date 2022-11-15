@@ -7,7 +7,7 @@ import WarningIcon from "../../../public/assets/icons/warning.svg";
 import SearchIcon from "../../../public/assets/icons/search.svg";
 
 import TableBody from "@mui/material/TableBody";
-import { MenuItem, InputAdornment, Table } from "@mui/material";
+import { MenuItem, InputAdornment, Table, TableRow } from "@mui/material";
 import { Button } from "../button/Button";
 
 export const DataTable = () => {
@@ -28,18 +28,19 @@ export const DataTable = () => {
     }
   });
 
-  const handleSort = () => {
-    const sort = data.sort((a, b) => {
-      if (a.fullName < b.fullName) {
-        return sortOrder === "Naam" ? 1 : -1;
-      }
-      if (b.mail < a.mail) {
-        return sortOrder === "E-mail" ? -1 : 1;
-      }
-      if (a.verified < b.verified) {
-        return sortOrder === "Geverifieerd" ? 1 : -1;
-      }
+  const keys = Object.keys(data[0]);
 
+  const handleSort = (sortKey: string) => {
+    const sort = data.sort((a, b) => {
+      const keyA = a[sortKey];
+      const keyB = b[sortKey];
+
+      if (keyA < keyB) {
+        return -1;
+      }
+      if (keyA > keyB) {
+        return 1;
+      }
       return 0;
     });
 
@@ -108,8 +109,8 @@ export const DataTable = () => {
                 <Styled.TableRowCell>{row.accountCreated}</Styled.TableRowCell>
                 <Styled.TableRowCell>{row.lastActive}</Styled.TableRowCell>
                 <Styled.TableRowCell>
-                  {buttonIcons.map((action, index) => (
-                    <Button key={index} icon={action[index]} />
+                  {buttonIcons.map((id) => (
+                    <Button key={id} icon={row.setActions} />
                   ))}
                 </Styled.TableRowCell>
               </Styled.CustomRow>
