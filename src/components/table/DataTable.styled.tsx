@@ -38,18 +38,18 @@ export const TableHeader = styled.th`
   font-size: 16px;
   font-weight: 600;
   padding: 16px;
-  text-align: "left";
+  text-align: left;
 `;
 
 export const TableRowCell = styled.th`
   font-size: 13px;
   font-weight: 400;
   padding: 20px;
-  text-align: "left";
+  text-align: left;
 `;
 
 export const TableCellIcons = styled.th`
-  text-align: "center";
+  text-align: center;
 `;
 
 export const Wrapper = styled.div`
