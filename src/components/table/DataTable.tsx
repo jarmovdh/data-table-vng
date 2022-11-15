@@ -29,11 +29,6 @@ export const DataTable = () => {
   });
 
   const handleSort = () => {
-    const byName = data.sort((a, b) => {
-      if (a.fullName < b.fullName) return 1;
-      return -1;
-    });
-
     const sort = data.sort((a, b) => {
       if (a.fullName < b.fullName) {
         return sortOrder === "Naam" ? 1 : -1;
