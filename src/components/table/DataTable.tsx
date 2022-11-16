@@ -5,6 +5,11 @@ import data from "../../../fixtures/mockData";
 import VerifiedIcon from "../../../public/assets/icons/verified.svg";
 import WarningIcon from "../../../public/assets/icons/warning.svg";
 import SearchIcon from "../../../public/assets/icons/search.svg";
+import BinIcon from "../../../public/assets/icons/bin.svg";
+import LockCloseIcon from "../../../public/assets/icons/lockclose.svg";
+import UnlockIcon from "../../../public/assets/icons/unlock.svg";
+import WriteIcon from "../../../public/assets/icons/write.svg";
+import SettingsIcon from "../../../public/assets/icons/settings.svg";
 
 import TableBody from "@mui/material/TableBody";
 import { MenuItem, InputAdornment, Table, TableRow } from "@mui/material";
@@ -34,6 +39,9 @@ export const DataTable = () => {
     },
   ];
 
+  const sortKey = sortOptions.map((entry) => entry.label);
+  const buttonIcons = data.map((entry) => entry.setActions);
+
   const filteredTable = sortedTable.filter((value) => {
     if (searchValue === "") {
       return value;
@@ -45,10 +53,12 @@ export const DataTable = () => {
     }
   });
 
-  const handleSort = (sortOptions: string | any) => {
+  const handleSort = (sortKey: string) => {
     const sort = data.sort((a, b) => {
-      const keyA = a[sortOptions];
-      const keyB = b[sortOptions];
+      const keyA = a[sortKey];
+      const keyB = b[sortKey];
+
+      console.log(sortKey);
 
       if (keyA < keyB) {
         return -1;
@@ -63,10 +73,8 @@ export const DataTable = () => {
   };
 
   useEffect(() => {
-    handleSort(sortOptions as string | any);
+    handleSort(sortKey as string | any);
   }, [sortOrder, data]);
-
-  const buttonIcons = data.map((entry) => entry.setActions);
 
   return (
     <>
@@ -125,7 +133,13 @@ export const DataTable = () => {
                 <Styled.TableRowCell>{row.lastActive}</Styled.TableRowCell>
                 <Styled.TableRowCell>
                   {buttonIcons.map((id) => (
-                    <Button key={id} icon={row.setActions} />
+                    <Button key={id}>
+                      {row.setActions === "bin" && <BinIcon />}
+                      {row.setActions === "lock" && <LockCloseIcon />}
+                      {row.setActions === "unlock" && <UnlockIcon />}
+                      {row.setActions === "write" && <WriteIcon />}
+                      {row.setActions === "settings" && <SettingsIcon />}
+                    </Button>
                   ))}
                 </Styled.TableRowCell>
               </Styled.CustomRow>

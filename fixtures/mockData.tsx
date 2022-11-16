@@ -17,7 +17,7 @@ const data = [
     verified: true,
     accountCreated: "2022-11-15T14:48:00.000Z",
     lastActive: "2022-11-15T14:48:00.000Z",
-    setActions: "lock",
+    setActions: "bin",
   },
   {
     id: 3,
@@ -27,7 +27,17 @@ const data = [
     verified: false,
     accountCreated: "2022-11-15T14:48:00.000Z",
     lastActive: "2022-11-15T14:48:00.000Z",
-    setActions: "bin",
+    setActions: "settings",
+  },
+  {
+    id: 3,
+    fullName: "Jarmo van der Heul",
+    accesTo: "-",
+    mail: "jarmovdh@humanoids.com",
+    verified: false,
+    accountCreated: "2022-11-15T14:48:00.000Z",
+    lastActive: "2022-11-15T14:48:00.000Z",
+    setActions: "settings",
   },
 ];
 
