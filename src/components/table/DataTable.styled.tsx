@@ -53,15 +53,18 @@ export const TableCellIcons = styled.th`
 `;
 
 export const Wrapper = styled.div`
-  align-items: center;
+  align-items: flex-end;
   display: flex;
-  gap: 20px;
-  justify-content: flex-end;
+  flex-direction: column;
   padding-bottom: 15px;
+  gap: 20px;
 
-  @media screen and (max-width: 730px) {
-    align-items: flex-end;
+  @media (min-width: 730px) {
+    align-items: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: flex-end;
+    padding-bottom: 15px;
   }
 `;

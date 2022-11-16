@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as Styled from "./DataTable.styled";
 
 import data from "../../../fixtures/mockData";
@@ -34,31 +34,27 @@ export const DataTable = () => {
       value: "Geverifieerd",
     },
     {
-      label: "accesTo",
+      label: "accessTo",
       value: "Toegang",
     },
   ];
 
-  const sortKey = sortOptions.map((entry) => entry.label);
-  const buttonIcons = data.map((entry) => entry.setActions);
-
   const filteredTable = sortedTable.filter((value) => {
     if (searchValue === "") {
-      return value;
-    } else if (
+      return true;
+    }
+    if (
       value.fullName.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
       value.mail.toLowerCase().includes(searchValue.toLocaleLowerCase())
     ) {
-      return value;
+      return true;
     }
   });
 
-  const handleSort = (sortKey: string) => {
+  const handleSort = (sortOptions: string) => {
     const sort = data.sort((a, b) => {
-      const keyA = a[sortKey];
-      const keyB = b[sortKey];
-
-      console.log(sortKey);
+      const keyA = a[sortOptions];
+      const keyB = b[sortOptions];
 
       if (keyA < keyB) {
         return -1;
@@ -72,10 +68,6 @@ export const DataTable = () => {
     setSortedTable(sort);
   };
 
-  useEffect(() => {
-    handleSort(sortKey as string | any);
-  }, [sortOrder, data]);
-
   return (
     <>
       <Styled.Wrapper>
@@ -86,7 +78,7 @@ export const DataTable = () => {
             onChange={(e) => setSortOrder(e.target.value as string)}
           >
             {sortOptions.map(({ label, value }) => (
-              <MenuItem key={label} value={label} onClick={() => handleSort(label)}>
+              <MenuItem key={label} value={value} onClick={(e) => handleSort(label)}>
                 {value}
               </MenuItem>
             ))}
@@ -124,7 +116,7 @@ export const DataTable = () => {
             {filteredTable.map((row, index) => (
               <Styled.CustomRow key={index}>
                 <Styled.TableRowCell scope="row">{row.fullName}</Styled.TableRowCell>
-                <Styled.TableRowCell>{row.accesTo}</Styled.TableRowCell>
+                <Styled.TableRowCell>{row.accessTo}</Styled.TableRowCell>
                 <Styled.TableRowCell>{row.mail}</Styled.TableRowCell>
                 <Styled.TableCellIcons>
                   {row.verified ? <VerifiedIcon /> : <WarningIcon />}
@@ -132,13 +124,13 @@ export const DataTable = () => {
                 <Styled.TableRowCell>{row.accountCreated}</Styled.TableRowCell>
                 <Styled.TableRowCell>{row.lastActive}</Styled.TableRowCell>
                 <Styled.TableRowCell>
-                  {buttonIcons.map((id) => (
-                    <Button key={id}>
-                      {row.setActions === "bin" && <BinIcon />}
-                      {row.setActions === "lock" && <LockCloseIcon />}
-                      {row.setActions === "unlock" && <UnlockIcon />}
-                      {row.setActions === "write" && <WriteIcon />}
-                      {row.setActions === "settings" && <SettingsIcon />}
+                  {row.setActions.map((icon, index) => (
+                    <Button key={index}>
+                      {icon === "bin" && <BinIcon />}
+                      {icon === "lock" && <LockCloseIcon />}
+                      {icon === "unlock" && <UnlockIcon />}
+                      {icon === "write" && <WriteIcon />}
+                      {icon === "settings" && <SettingsIcon />}
                     </Button>
                   ))}
                 </Styled.TableRowCell>
