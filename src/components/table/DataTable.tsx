@@ -15,6 +15,17 @@ import TableBody from "@mui/material/TableBody";
 import { MenuItem, InputAdornment, Table, TableRow } from "@mui/material";
 import { Button } from "../button/Button";
 
+interface sortKeys {
+  id: number;
+  fullName: string;
+  accessTo: string;
+  mail: string;
+  verified: boolean;
+  accountCreated: string;
+  lastActive: string;
+  setActions: string;
+}
+
 export const DataTable = () => {
   const [sortOrder, setSortOrder] = useState("");
   const [sortedTable, setSortedTable] = useState(data);
@@ -53,8 +64,8 @@ export const DataTable = () => {
 
   const handleSort = (sortOptions: string) => {
     const sort = data.sort((a, b) => {
-      const keyA = a[sortOptions];
-      const keyB = b[sortOptions];
+      const keyA = a[sortOptions as keyof sortKeys];
+      const keyB = b[sortOptions as keyof sortKeys];
 
       if (keyA < keyB) {
         return -1;
@@ -78,7 +89,7 @@ export const DataTable = () => {
             onChange={(e) => setSortOrder(e.target.value as string)}
           >
             {sortOptions.map(({ label, value }) => (
-              <MenuItem key={label} value={value} onClick={(e) => handleSort(label)}>
+              <MenuItem key={label} value={value} onClick={() => handleSort(label)}>
                 {value}
               </MenuItem>
             ))}
