@@ -1,52 +1,70 @@
-import { OutlinedInput, Select, Table } from "@mui/material";
+import { OutlinedInput, Select, Table, TableContainer, TableRow } from "@mui/material";
 import styled from "styled-components";
 
-export const Label = styled("label")({
-  paddingRight: 10,
-});
+export const Container = styled(TableContainer)`
+  border-radius: 1px;
+`;
 
-export const StyledOutlineInput = styled(OutlinedInput)({
-  borderRadius: 1,
-});
+export const CustomOutlineInput = styled(OutlinedInput)`
+  border-radius: 1px;
+  height: 42px;
+`;
 
-export const StyledSelect = styled(Select)({
-  borderRadius: 1,
-  minWidth: 200,
-});
+export const CustomRow = styled(TableRow)`
+  border-bottom: 1px solid #757575;
+`;
 
-export const StyledTable = styled(Table)({
-  borderRadius: 1,
-});
+export const CustomSelect = styled(Select)`
+  border-radius: 1px;
+  height: 42px;
+  min-width: 150px;
+`;
 
-export const TableHead = styled("thead")({
-  background: "#F3F3F3",
-  height: "75px",
-});
+export const CustomTable = styled(Table)`
+  border-radius: 1px;
+`;
 
-export const TableHeader = styled("th")({
-  borderBottom: "1px solid #000",
-  fontSize: 16,
-  fontWeight: "bold",
-  padding: 16,
-  textAlign: "left",
-});
+export const Label = styled.label`
+  padding-right: 10px;
+`;
 
-export const TableRowCell = styled("th")({
-  borderBottom: "1px solid #000",
-  fontSize: 13,
-  padding: 20,
-  textAlign: "left",
-});
+export const TableHead = styled.thead`
+  background: #f3f3f3;
+  height: 75px;
+`;
 
-export const TableCellIcons = styled("th")({
-  borderBottom: "1px solid #000",
-  textAlign: "center",
-});
+export const TableHeader = styled.th`
+  color: #212121;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px;
+  text-align: left;
+`;
 
-export const Wrapper = styled("div")({
-  alignItems: "center",
-  display: "flex",
-  gap: 20,
-  justifyContent: "flex-end",
-  paddingBottom: 15,
-});
+export const TableRowCell = styled.th`
+  font-size: 13px;
+  font-weight: 400;
+  padding: 20px;
+  text-align: left;
+`;
+
+export const TableCellIcons = styled.th`
+  text-align: center;
+`;
+
+export const Wrapper = styled.div`
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+  gap: 20px;
+
+  @media (min-width: 730px) {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: flex-end;
+    padding-bottom: 15px;
+  }
+`;
